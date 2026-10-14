@@ -1,0 +1,60 @@
+Rows after de-duplication: 1337 
+
+# A tibble: 4 × 4
+  is_smoker obese     n   avg
+  <lgl>     <lgl> <int> <dbl>
+1 FALSE     FALSE   502  7977
+2 FALSE     TRUE    561  8856
+3 TRUE      FALSE   129 21363
+4 TRUE      TRUE    145 41558
+
+One-sided Welch t-test: obese > non-obese
+
+	Welch Two Sample t-test
+
+data:  charges by factor(obese, levels = c(TRUE, FALSE))
+t = 7.706, df = 1106.9, p-value = 1.438e-14
+alternative hypothesis: true difference in means between group TRUE and group FALSE is greater than 0
+95 percent confidence interval:
+ 3820.477      Inf
+sample estimates:
+ mean in group TRUE mean in group FALSE 
+           15572.04            10713.67 
+
+Mann-Whitney (one-sided):
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  df$charges[df$obese] and df$charges[!df$obese]
+W = 250348, p-value = 4.488e-05
+alternative hypothesis: true location shift is greater than 0
+
+
+Call:
+lm(formula = charges ~ age + bmi + children + is_smoker + sex + 
+    region + is_smoker:obese, data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-18235.1  -1827.1  -1253.6   -447.5  24802.2 
+
+Coefficients:
+                          Estimate Std. Error t value Pr(>|t|)    
+(Intercept)              -4741.958    960.552  -4.937 8.95e-07 ***
+age                        263.203      8.815  29.859  < 2e-16 ***
+bmi                        114.933     34.584   3.323 0.000914 ***
+children                   520.109    102.028   5.098 3.94e-07 ***
+is_smokerTRUE            13402.340    444.075  30.180  < 2e-16 ***
+sexmale                   -490.395    246.750  -1.987 0.047082 *  
+regionnorthwest           -265.259    352.810  -0.752 0.452276    
+regionsoutheast           -825.007    354.932  -2.324 0.020254 *  
+regionsouthwest          -1224.308    353.816  -3.460 0.000557 ***
+is_smokerFALSE:obeseTRUE  -862.966    426.324  -2.024 0.043150 *  
+is_smokerTRUE:obeseTRUE  18930.946    643.430  29.422  < 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 4486 on 1326 degrees of freedom
+Multiple R-squared:  0.8638,	Adjusted R-squared:  0.8628 
+F-statistic: 840.8 on 10 and 1326 DF,  p-value: < 2.2e-16
+

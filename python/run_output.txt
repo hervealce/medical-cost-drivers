@@ -1,0 +1,72 @@
+ n_rows
+   1337 
+
+ is_smoker      bmi_band   n  avg_charges  median_charges
+     False 1 underweight  15       5533.0          3733.0
+     False     2 healthy 175       7686.0          6594.0
+     False  3 overweight 312       8258.0          7064.0
+     False       4 obese 561       8856.0          8084.0
+      True 1 underweight   5      18810.0         15007.0
+      True     2 healthy  50      19942.0         19480.0
+      True  3 overweight  74      22496.0         21215.0
+      True       4 obese 145      41558.0         40904.0 
+
+   region   n  avg_charges  pct_of_total_spend  cost_rank
+southeast 364      14735.0                30.2          1
+northeast 324      13406.0                24.5          2
+northwest 324      12451.0                22.7          3
+southwest 325      12347.0                22.6          4 
+
+age_band  non_smoker_avg  smoker_avg  smoker_multiple
+   18-29          4427.0     27518.0             6.22
+   30-44          6945.0     30834.0             4.44
+   45-59         11872.0     35890.0             3.02
+     60+         15233.0     40631.0             2.67 
+
+{
+  "n_rows": 1337,
+  "bmi_test": {
+    "mean_obese": 15572.041945311616,
+    "mean_other": 10713.666900584785,
+    "welch_p": 1.43774722108739e-14,
+    "mwu_p": 4.487609123504542e-05,
+    "cohens_d": 0.4155976270316566
+  },
+  "smoker_test": {
+    "mean_smoker": 32050.23183153285,
+    "mean_non": 8440.660306508938,
+    "welch_p": 6.2617207747273455e-103,
+    "cohens_d": 2.5674482998646297
+  },
+  "interaction_means": {
+    "smoker=False": {
+      "obese=False": 7977.0,
+      "obese=True": 8856.0
+    },
+    "smoker=True": {
+      "obese=False": 21363.0,
+      "obese=True": 41558.0
+    }
+  },
+  "linear_regression": {
+    "test_r2": 0.8839813068036885,
+    "test_mae": 2481.215953682998,
+    "cv_r2_mean": 0.8418756512468137
+  },
+  "gradient_boosting": {
+    "test_r2": 0.8811783957130963,
+    "test_mae": 2397.9725419217148,
+    "cv_r2_mean": 0.8299074498823888
+  },
+  "lr_coefficients": {
+    "age": 263.0,
+    "bmi": 62.0,
+    "children": 520.0,
+    "is_smoker": 13577.0,
+    "sex_male": -493.0,
+    "region_northwest": -276.0,
+    "region_southeast": -784.0,
+    "region_southwest": -1217.0,
+    "smoker_x_obese": 19461.0
+  }
+}
